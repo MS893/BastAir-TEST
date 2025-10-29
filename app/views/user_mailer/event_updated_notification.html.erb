@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Mise à jour de l'événement : <%= @event.title %></h1>
+    <p>Bonjour <%= @user.name %>,</p>
+    <p>L'événement "<%= @event.title %>" auquel vous êtes inscrit a été mis à jour par l'organisateur.</p>
+    <p>Vous pouvez consulter les modifications en cliquant sur le lien ci-dessous :</p>
+    <p><%= link_to "Voir l'événement", event_url(@event) %></p>
+    <p>À bientôt sur Eventbrite</p>
+  </body>
+</html>

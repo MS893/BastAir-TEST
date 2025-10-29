@@ -1,0 +1,49 @@
+fr:
+  time:
+    formats:
+      long_with_at: "Le %d %B %Y à %Hh%M"
+      long: "%A %d %B %Y à %Hh%M"
+      short: "%d %b %H:%M"
+      default: "%d/%m/%Y %H:%M:%S"
+    am: 'am'
+    pm: 'pm'
+  event:
+    participants:
+      one: "1 inscrit"
+      other: "%{count} inscrits"
+    month_names:
+      - ~
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
+  date:
+    formats:
+      long: "%d %B %Y"
+      short: "%d %b"
+    month_names:
+      - ~
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
+    abbr_month_names: [~, jan, fév, mar, avr, mai, jui, jui, aoû, sep, oct, nov, déc]
+    day_names: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
+    abbr_day_names: [dim, lun, mar, mer, jeu, ven, sam]
+    order: [day, month, year]

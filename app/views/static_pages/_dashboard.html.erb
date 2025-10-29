@@ -1,0 +1,20 @@
+<div class="container-fluid pt-4">
+  
+  <h2 class="display-5 mt-5 mb-5 text-center">Bienvenue, <%= current_user.prenom %></h2>
+  <%= turbo_stream_from current_user %>
+
+  <div class="row justify-content-center g-4">
+    <!-- Carte Solde -->
+    <%= render "static_pages/solde", user: current_user %>
+
+    <!-- Carte Prochain Vol -->
+    <%= render "static_pages/prochain_vol" %>
+
+    <!-- Carte dates limites -->
+    <%= render 'static_pages/validites', user: current_user %>
+
+    <!-- Carte évènements à venir -->
+    <%= render 'static_pages/evenements_a_venir' %>
+  </div>
+  
+</div>

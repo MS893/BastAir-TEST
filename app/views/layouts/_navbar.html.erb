@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  
+  <div class="container-fluid">
+
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+      <%= image_tag "/images/logo.png", alt: "BastAir logo", height: "30", class: "me-2" %>
+      BastAir
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to "Accueil", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Tarifs", tarifs_path, class: "nav-link #{'active' if current_page?(tarifs_path)}" %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Évènements", events_path, class: "nav-link #{'active' if current_page?(events_path)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Carnet de vol", "#", class: "nav-link #{'active' if current_page?("#")}" %>
+          </li>
+          <!-- MENU DÉROULANT "DOCUMENTS" -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Documents
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><%= link_to "Cours théoriques", cours_theoriques_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Leçons de vol", "#", class: "dropdown-item" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to "Documents divers", "#", data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+            </ul>
+          </li>
+          <!-- FIN DU MENU -->
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Médiathèque", mediatheque_path, class: "nav-link #{'active' if current_page?(mediatheque_path)}" %>
+          </li>
+        <% end %>
+        <% unless user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "La flotte", flotte_path, class: "nav-link #{'active' if current_page?(flotte_path)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "BIA", bia_path, class: "nav-link #{'active' if current_page?(bia_path)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Baptêmes", baptemes_path, class: "nav-link #{'active' if current_page?(baptemes_path)}" %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to "Outils", outils_path, class: "nav-link #{'active' if current_page?(outils_path)}" %>
+        </li>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.email %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><%= link_to "Mon Profil", user_path(current_user), class: "dropdown-item" %></li>
+              <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "dropdown-item" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Espace adhérents", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="d-flex align-items-center ms-3">
+        <i class="bi bi-sun-fill text-light me-2"></i>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="theme-toggle">
+        </div>
+        <i class="bi bi-moon-fill text-light ms-1"></i>
+      </div>
+
+    </div>
+  </div>
+  
+</nav>

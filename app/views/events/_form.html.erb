@@ -1,0 +1,63 @@
+<%# Ce formulaire est utilisé par les vues new.html.erb et edit.html.erb %>
+
+<%= form_with(model: event, html: { class: "needs-validation", novalidate: true }) do |form| %>
+
+  <% if event.errors.any? %>
+    <div class="alert alert-danger">
+      <h5 class="alert-heading"><%= pluralize(event.errors.count, "erreur") %> a empêché cet événement d'être sauvegardé :</h5>
+      <ul>
+        <% event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, "Type d'événement", class: "form-label" %>
+    <%# Utilisation d'un select pour restreindre le choix des titres %>
+    <%= form.select :title, Event::ALLOWED_TITLES, { prompt: "Sélectionnez un type" }, class: "form-select", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, "Description", class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", required: true, rows: 4, placeholder: "Décrivez l'événement en quelques mots..." %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7 mb-3">
+      <%= form.label :start_date, "Date et heure de début", class: "form-label" %>
+      <div class="d-flex gap-2">
+        <%# Champ calendrier pour la date %>
+        <%= form.date_field :start_date, value: @event.start_date&.to_date, class: "form-control", required: true %>
+        <%# Menus déroulants pour l'heure et les minutes %>
+        <%= select_hour @event.start_date, { start_hour: 6, end_hour: 21 }, { name: 'event[start_date_hour]', class: 'form-select' } %>
+        <%= select_minute @event.start_date, { minute_step: 15 }, { name: 'event[start_date_minute]', class: 'form-select' } %>
+      </div>
+    </div>
+    <div class="col-md-5 mb-3">
+      <%= form.label :price, "Prix (en €)", class: "form-label" %>
+      <%= form.number_field :price, class: "form-control", required: true, step: 1, min: 0, placeholder: "0 pour gratuit" %>
+    </div>
+  </div>
+
+  <div class="mb-4" data-controller="image-preview">
+    <%= form.label :photo, "Photo de l'événement", class: "form-label" %>
+    <%= form.file_field :photo, class: "form-control", data: { image_preview_target: "input", action: "change->image-preview#preview" } %>
+
+    <%# Zone d'aperçu de l'image %>
+    <div class="mt-2">
+      <% if event.photo.attached? %>
+        <%= image_tag event.photo.variant(resize_to_limit: [200, 200]), class: "img-thumbnail mt-1", data: { image_preview_target: "preview" } %>
+      <% else %>
+        <img class="img-thumbnail mt-1 d-none" data-image-preview-target="preview" style="max-width: 200px; max-height: 200px;">
+      <% end %>
+    </div>
+  </div>
+
+  <div class="actions d-flex justify-content-end gap-2 mt-4">
+    <%= link_to 'Annuler', events_path, class: 'btn btn-secondary' %>
+    <%= form.submit "Sauvegarder", class: "btn btn-primary" %>
+  </div>
+  
+<% end %>

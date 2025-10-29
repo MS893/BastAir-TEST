@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour <%= @user.prenom %>,</h1>
+    <p>
+      Ceci est un rappel pour vous informer que <strong><%= @item_name %></strong> arrivera à expiration le <strong><%= l(@expiry_date, format: :long) %></strong>.
+    </p>
+    <p>
+      Pensez à effectuer les démarches nécessaires pour son renouvellement afin de pouvoir continuer à voler sans interruption.
+    </p>
+    <p>À très bientôt sur BastAir !</p>
+  </body>
+</html>

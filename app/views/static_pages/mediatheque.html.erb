@@ -1,0 +1,59 @@
+<% content_for :title, "Médiathèque" %>
+
+<div class="container my-5">
+  <div class="text-center">
+    <h1 class="mb-4">Médiathèque</h1>
+    <p class="lead">
+      Plongez dans l'univers de BastAir à travers nos plus belles photos et vidéos.
+    </p>
+  </div>
+  <hr class="my-5">
+
+  <!-- Section Vidéo -->
+  <div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+      <h2 class="text-center mb-4">Vidéo de Présentation</h2>
+      <div class="ratio ratio-16x9">
+        <%# Remplacez l'URL par le lien d'intégration de votre vidéo (YouTube, Vimeo, etc.) %>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Vidéo de présentation" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Photos -->
+  <h2 class="text-center mb-4">Galerie Photos</h2>
+  <div class="row">
+    <!-- Photo 1 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card">
+        <%= image_tag 'https://placehold.co/600x400/0d6efd/FFFFFF?text=Vue+Aérienne', class: 'card-img-top', alt: 'Vue aérienne' %>
+        <div class="card-body">
+          <p class="card-text">Vue imprenable sur la côte depuis notre B23.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo 2 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card">
+        <%= image_tag 'https://placehold.co/600x400/198754/FFFFFF?text=Club+House', class: 'card-img-top', alt: 'Club House' %>
+        <div class="card-body">
+          <p class="card-text">L'ambiance conviviale de notre club-house.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo 3 -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card">
+        <%= image_tag 'https://placehold.co/600x400/ffc107/FFFFFF?text=Avion+au+sol', class: 'card-img-top', alt: 'Avion au sol' %>
+        <div class="card-body">
+          <p class="card-text">Préparation avant un vol d'instruction.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ajoutez d'autres photos ici sur le même modèle -->
+
+  </div>
+</div>

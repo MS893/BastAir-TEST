@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF--8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour <%= @admin.name.presence || @admin.email %>,</h1>
+    <p>
+      Bonne nouvelle ! Un nouvel utilisateur vient de s'inscrire à votre événement : <strong><%= @event.title %></strong>.
+    </p>
+    <p>
+      Le participant est : <%= @participant.name.presence || @participant.email %>.
+    </p>
+    <p>
+      Pour voir les détails de votre événement, connectez-vous à votre espace sur notre site.
+    </p>
+    <p>À bientôt !</p>
+  </body>
+</html>

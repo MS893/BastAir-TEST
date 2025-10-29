@@ -1,0 +1,52 @@
+
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Événements à venir</h1>
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to 'Créer un événement', new_event_path, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <div class="row">
+
+    <% if @events.any? %>
+    
+      <% @events.each do |event| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm event-card">
+            <div class="card-header bg-gradient bg-<%= event_color_class(event.title) %> text-white">
+              <h5 class="card-title mb-0 d-flex align-items-center">
+                <i class="bi <%= event_icon_class(event.title) %> me-2 fs-4"></i>
+                <span class="flex-grow-1"><%= event.title %></span>
+              </h5>
+            </div>
+            <div class="card-body d-flex flex-column pb-3">
+              <div class="d-flex align-items-center text-muted mb-3">
+                <i class="bi bi-calendar-week me-2"></i>
+                <span><%= l(event.start_date, format: :long) %></span>
+              </div>
+              <p class="card-text flex-grow-1"><%= truncate(event.description, length: 100) %></p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 pt-0 d-flex justify-content-between align-items-center">
+              <%= link_to 'Voir les détails', event_path(event), class: "btn btn-outline-#{event_color_class(event.title)}" %>
+              <% unless event.is_free? %>
+                <span class="badge rounded-pill text-bg-<%= event_color_class(event.title) %>">Participation : <%= event.price %> €</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    <% else %>
+
+      <div class="col">
+        <div class="alert alert-info" role="alert">
+          Il n'y a pas d'événements à venir pour le moment. Revenez bientôt !
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+  
+</div>

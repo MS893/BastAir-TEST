@@ -1,0 +1,12 @@
+<%# Ce partiel est utilisé pour afficher les messages flash (notice et alert) sur l'application %>
+<% flash.each do |type, msg| %>
+  <% if type == "notice" %>
+    <div class="alert alert-success" role="alert">
+      <%= msg %>
+    </div>
+  <% elsif type == "alert" %>
+    <div class="alert alert-danger" role="alert">
+      <%= msg %>
+    </div>
+  <% end %>
+<% end %>

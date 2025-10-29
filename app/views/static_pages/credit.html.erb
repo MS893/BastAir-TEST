@@ -1,0 +1,86 @@
+<% content_for :title, "Créditer mon compte" %>
+
+<div class="container my-5">
+  <h1 class="display-5 mb-4">Créditer mon compte</h1>
+  <p class="lead mb-5">Choisissez une option pour payer (paiement sécurisé avec Stripe).</p>
+
+  <div class="row">
+
+    <!-- Carte 1: Montant libre -->
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Montant libre</h5>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <p class="card-text">Choisissez le montant que vous souhaitez ajouter à votre compte.</p>
+          <%= form_with url: checkout_path, method: :post, data: { turbo: false }, class: "mt-auto" do |form| %>
+            <div class="input-group mb-3">
+              <%= form.number_field :amount, class: "form-control", placeholder: "Montant", min: "5", step: "1" %>
+              <span class="input-group-text">€</span>
+            </div>
+            <%= form.hidden_field :description, value: "Montant choisi pour créditer mon compte BastAir" %>
+            <%= form.submit "Payer", class: "btn btn-primary w-100" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte 2: Bloc 6 heures -->
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Bloc 6 Heures</h5>
+          <small class="text-muted">Réduction de 5€/h</small>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <p class="card-text">Achetez un pack de 6 heures de vol et économisez !</p>
+          <p class="card-text display-6 mt-auto"><%= number_to_currency(@prix_bloc_6h, unit: "€", separator: ",", delimiter: " ", format: "%n %u") %></p>
+          <%= form_with url: checkout_path, method: :post, data: { turbo: false } do |form| %>
+            <%= form.hidden_field :amount, value: @prix_bloc_6h %>
+            <%= form.hidden_field :description, value: "Achat d'un bloc de 6h de vol pour mon compte BastAir" %>
+            <%= form.submit "Acheter le bloc", class: "btn btn-success w-100" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte 3: Bloc 10 heures -->
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Bloc 10 Heures</h5>
+          <small class="text-muted">Réduction de 10€/h</small>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <p class="card-text">L'option la plus économique pour les pilotes réguliers.</p>
+          <p class="card-text display-6 mt-auto"><%= number_to_currency(@prix_bloc_10h, unit: "€", separator: ",", delimiter: " ", format: "%n %u") %></p>
+          <%= form_with url: checkout_path, method: :post, data: { turbo: false } do |form| %>
+            <%= form.hidden_field :amount, value: @prix_bloc_10h %>
+            <%= form.hidden_field :description, value: "Achat d'un bloc de 10h de vol pour mon compte BastAir" %>
+            <%= form.submit "Acheter le bloc", class: "btn btn-success w-100" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert alert-info mt-5" role="alert">
+    <h4 class="alert-heading"><i class="bi bi-info-circle-fill me-2"></i>Information sur les paiements</h4>
+    <p>
+      Pour chaque transaction en ligne via Stripe, des frais de traitement fixes de <strong>2,00 €</strong> seront ajoutés au montant final sur la page de paiement.
+    </p>
+    <hr>
+    <p class="mb-2">
+      <strong>Alternative sans frais :</strong> Pour économiser ces frais, nous vous encourageons à effectuer un virement bancaire (instantané) aux coordonnées ci-dessous.
+      N'oubliez pas d'indiquer votre <strong>nom et prénom</strong> dans le libellé du virement pour que nous puissions créditer votre compte.
+    </p>
+    <div class="p-3 bg-light rounded">
+      <h5 class="mb-2">RIB de l'aéroclub BastAir</h5>
+      <p class="font-monospace mb-1"><strong>IBAN :</strong> FR76 3000 4000 0500 0012 3456 789</p>
+      <p class="font-monospace mb-0"><strong>BIC :</strong> BNPAFRPPXXX</p>
+    </div>
+  </div>
+  
+</div>

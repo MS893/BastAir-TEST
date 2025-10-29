@@ -1,0 +1,100 @@
+<% content_for :title, "Tarifs" %>
+
+<div class="container my-5">
+
+  <div class="text-center">
+    <h1 class="mb-4">Nos tarifs adhérents</h1>
+    <p class="lead">
+      Pour l'année <span class="current-year"></span>, voici les tarifs pour voler avec BastAir.
+    </p>
+  </div>
+
+  <hr class="my-5">
+
+  <% if @tarif %>
+    <div class="row justify-content-center">
+
+      <!-- Card : Tarifs inscription au club -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-header">
+            <h4 class="my-0 fw-normal">Inscription au club</h4>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <p><strong>Cotisation annuelle à l'aéroclub</strong></p>
+            <ul class="list-unstyled mb-4">
+              <li>Moins de 21 ans : <%= @tarif.cotisation_club_m21 %>€</li>
+              <li>Plus de 21 ans : <%= @tarif.cotisation_club_p21 %>€</li>
+              <li>Pilote inscrit dans un autre club FFA : <%= @tarif.cotisation_autre_ffa %>€</li>
+            </ul>
+            <p><strong>Licence FFA</strong></p>
+            <ul class="list-unstyled mb-4">
+              <li>Avec abonnement Info Pilote : <%= @tarif.licence_ffa_info_pilote %>€</li>
+              <li>Sans abonnement Info Pilote : <%= @tarif.licence_ffa %>€</li>
+            </ul>
+            <p><strong>E-learning du cours théorique avec Mermoz</strong></p>
+            <ul class="list-unstyled mb-4">
+              <li>(50% du tarif normal) : <%= @tarif.elearning_theorique %>€</li>
+            </ul>
+            <p><strong>Manuel du Pilote Privé</strong></p>
+            <ul class="list-unstyled mb-1">
+              <li>Moins de 21 ans : <%= @tarif.pack_pilote_m21 == 0 ? 'offert' : "#{@tarif.pack_pilote_m21}€" %></li>
+              <li>Plus de 21 ans : <%= @tarif.pack_pilote_p21 %>€</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card : Tarifs avion -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-header">
+            <h4 class="my-0 fw-normal">Tarif Horaire Avion</h4>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title pricing-card-title my-5"><%= @tarif.tarif_horaire_avion1 %>€<small class="text-muted fw-light">/h</small></h1>
+            <p>(tarif évolutif en fonction du coût de l'essence)</p>
+            <p>Tarif instruction : 10€/h (<%= @tarif.tarif_horaire_avion1 + 10 %>€/h en tout)</p>
+            <br>
+            <p><strong>Réduction en cas d'achat d'un bloc d'heures :</strong></p>
+            <ul class="list-unstyled mb-4">
+              <li>-5€/h pour un bloc de 6h</li>
+              <li>-10€/h pour un bloc de 10h</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card : Tarif simulateur -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-header">
+            <h4 class="my-0 fw-normal">Tarif Simulateur</h4>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title pricing-card-title my-5"><%= @tarif.tarif_simulateur %>€<small class="text-muted fw-light">/h</small></h1>
+            <p>(un bloc de 5h est prévu dans la formation)</p>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Simulateur réaliste</li>
+              <li>Instruction incluse</li>
+              <li>Formation aux procédures normale et d'urgence, et à la radio</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <hr class="my-4">
+
+    <% if user_signed_in? %>
+      <div class="text-center my-5">
+        <%= link_to "Créditer mon compte", credit_path, class: "btn btn-primary btn-lg" %>
+      </div>
+    <% end %>
+    
+  <% else %>
+    <div class="alert alert-warning text-center">
+      Les tarifs pour cette année ne sont pas encore disponibles. Veuillez nous contacter pour plus d'informations.
+    </div>
+  <% end %>
+
+</div>

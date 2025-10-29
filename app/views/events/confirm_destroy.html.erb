@@ -1,0 +1,21 @@
+<% content_for :title, "Confirmer la suppression" %>
+
+<div class="row justify-content-center py-5">
+  <div class="col-md-8 text-center">
+    <div class="card bg-danger-subtle border-danger">
+      <div class="card-body">
+        <h1 class="card-title">Confirmer la suppression</h1>
+        <p class="lead mt-3">
+          Êtes-vous certain de vouloir supprimer l'événement suivant ?
+          <br>
+          <strong>"<%= @event.title %>"</strong>
+        </p>
+        <p>Cette action est irréversible et toutes les données associées seront perdues.</p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <%= button_to "Oui, supprimer cet événement", event_path(@event), method: :delete, class: "btn btn-danger" %>
+          <%= link_to "Non, annuler", event_path(@event), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

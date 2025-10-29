@@ -1,0 +1,14 @@
+<div class="col-md-6 col-lg-4 mb-4">
+  <div class="card h-100 shadow-sm">
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title"><i class="bi bi-mic-fill me-2"></i><%= audio.title %></h5>
+      <p class="card-text text-muted flex-grow-1"><%= audio.description %></p>
+      <% if audio.audio.attached? %>
+        <audio controls class="w-100 mt-auto">
+          <source src="<%= url_for(audio.audio) %>" type="<%= audio.audio.content_type %>">
+          Votre navigateur ne supporte pas l'élément audio.
+        </audio>
+      <% end %>
+    </div>
+  </div>
+</div>

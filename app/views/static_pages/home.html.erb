@@ -1,0 +1,79 @@
+
+<% if user_signed_in? %>
+
+
+  <%# --- Page tableau de bord pour les adhérents --- %>
+  <% if params[:success] %>
+    <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+      <strong>Paiement réussi !</strong> Votre compte a été crédité. Le solde peut prendre quelques instants pour se mettre à jour.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <div class="dashboard-layout d-flex">
+    <!-- Tableau de bord -->
+    <main class="dashboard-content"><%= render 'static_pages/dashboard' %></main>
+  </div>
+
+
+<% else %>
+
+
+  <%# --- Page de présentation du club pour les visiteurs --- %>
+  <% content_for :title, "Le Club" %>
+
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h1 class="text-center mb-4">Le Club BastAir</h1>
+        <p class="lead text-center">
+          Bienvenue sur la page de notre aéroclub. Découvrez notre histoire, nos valeurs et notre passion pour l'aviation.
+        </p>
+        <hr class="my-5">
+
+        <h2 class="mt-4">Notre Histoire</h2>
+        <p>
+          Fondé en 2025, l'aéroclub BastAir, association loi 1901, est né de la passion d'un groupe de pilotes désireux de partager leur passion.
+        </p>
+
+        <h2 class="mt-5">Nos Installations</h2>
+        <p>
+          Basé sur l'aérodrome de Basse Terre Baillif (TFFB), notre club dispose d'installations modernes pour accueillir nos membres dans les meilleures conditions :
+        </p>
+        <ul>
+          <li>Un club-house convivial pour les briefings et les moments de détente.</li>
+          <li>Une salle de cours équipée pour la formation théorique.</li>
+          <li>Un hangar pour notre avion, entretenu avec le plus grand soin.</li>
+        </ul>
+
+        <h2 class="mt-5">Envie de devenir pilote ?</h2>
+        <p>
+          L'aéroclub vous permet d'obtenir un brevet de pilote privé LAPL(A) ou PPL(A) :
+        </p>
+        <ul>
+          <li>Une formation en partie sur un simulateur de vol moins coûteux que l'avion pour travailler les procédures normales et d'urgence, l'exécution des check-lists, apprendre à parler à la radio, apprendre à utiliser tous les instruments de bord.</li>
+          <li>Un avion à l'avionique moderne (EFIS).</li>
+          <li>Pour le loisir ou pour continuer vers une carrière professionnelle.</li>
+          <li>Possibilité pour les jeunes d'avoir des aides financières.</li>
+          <li>Formation au BIA pour les collégiens ou lycéens (se renseigner auprès de votre établissement).</li>
+          <li>Stages RSFI de maintien des compétences pour les FI.</li>
+          <li>Vous n'êtes pas sûr que cela va vous plaire ? essayer evec un vol d'initiation avant de vous inscrire.</li>
+        </ul>
+
+        <div class="text-center mt-5">
+          <%= link_to "Rejoignez-nous !", contact_path, class: "btn btn-primary btn-lg" %>
+        </div>
+        
+        <h2 class="mt-5">Juste envie de faire un baptême ?</h2>
+        <p>
+          L'aéroclub vous propose des vols au dessus de la Guadeloupe (en fonction de la météo).
+        </p>
+
+        <div class="text-center mt-5">
+          <%= link_to "Venez faire un baptême !", baptemes_path, class: "btn btn-primary btn-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<% end %>

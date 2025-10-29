@@ -1,0 +1,21 @@
+<%- if controller_name != 'sessions' %>
+  <div class="mb-2">
+    <%= link_to "Se connecter", new_session_path(resource_name) %>
+  </div>
+<% end %>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <div class="mb-2">
+    <%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %>
+  </div>
+<% end %>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <div class="mb-2">
+    <%= link_to "Instructions de confirmation non reçues ?", new_confirmation_path(resource_name) %>
+  </div>
+<% end %>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Instructions de déverrouillage non reçues ?", new_unlock_path(resource_name) %><br />
+<% end %>

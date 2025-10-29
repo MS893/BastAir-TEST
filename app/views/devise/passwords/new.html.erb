@@ -1,0 +1,50 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-11 col-sm-9 col-md-6 col-lg-3">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">Mot de passe oublié ?</h2>
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+          <div class="mb-3">
+            <p class="text-muted small">Entrez votre adresse e-mail et nous vous enverrons les instructions pour réinitialiser votre mot de passe.</p>
+            <%= f.label :email, "Adresse e-mail", class: "form-label" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+
+          <div class="d-flex justify-content-center my-3">
+            <%= recaptcha_tags %> <%# captcha de Google (je ne suis pas un robot) %>
+          </div>
+
+          <div class="d-grid">
+            <%= f.submit "Envoyer les instructions", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <div class="text-center mt-4">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- Bannière "Contactez-nous" -->
+    <div class="text-center mt-4">
+      <p class="text-muted">Vous n'êtes pas encore membre ?</p>
+      <%= link_to "Contactez-nous pour vous inscrire", contact_path, class: "btn btn-outline-primary" %>
+    </div>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  </div>
+</div>

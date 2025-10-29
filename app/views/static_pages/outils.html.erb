@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Outils - BastAir</title>
+    <style>
+        .calculator {
+            max-width: 400px;
+            margin: auto;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px #635b5b1a;
+        }
+
+        .display-area {
+            background-color: rgba(111, 151, 192, 1);
+            border-bottom: 1px solid #ffffffff;
+            text-align: right;
+            padding: .5rem 1rem .5rem .5rem;
+        }
+
+        #time-list {
+            min-height: 150px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 1.3rem;
+            padding-right: 1.5rem;
+        }
+        #time-list.text-muted {
+            color: #ffffffff !important; /* Bleu ciel un peu plus foncé */
+        }
+
+        #result.text-primary {
+            color: #ffffffff !important; 
+        }
+
+        .keypad .btn {
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        #current-input {
+            text-align: left;
+            padding-left: 0.5rem;
+        }
+
+        .keypad .btn-primary {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .display-area small,
+        #result small {
+            font-size: 65%;
+        }
+        #backspace-btn {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+        .btn-dark-orange {
+            background-color: #b84d00; /* Orange plus foncé */
+            border-color: #b84d00;
+            color: #fff;
+        }
+        .btn-dark-orange:hover {
+            background-color: #8a4100;
+            border-color: #8a4100;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CALCULATRICE -->
+    <section id="calculator-section" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-12 text-center">
+                    <h1>Calculatrice de temps de vol</h1>
+                    <p class="lead">Additionnez des heures et minutes (ex: 1h 30mn) ou des heures en centièmes (ex: 1.5)
+                    </p>
+                </div>
+            </div>
+
+            <div class="calculator bg-dark p-3">
+                <!-- Display -->
+                <div class="display-area mb-3 rounded">
+                    <div id="time-list" class="text-muted"></div>
+                    <div id="current-input" class="h2 mb-0">0h 00mn</div>
+                </div>
+                <div class="text-center mb-3">
+                    <h2>Total: <span id="result" class="text-primary">0h 00mn</span></h2>
+                    <button id="convert-btn" class="btn btn-success btn-sm mt-2" onclick="convertTotal()">Convertir en
+                        cent.</button>
+                </div>
+
+                <!-- Keypad -->
+                <div class="keypad">
+                    <div class="row g-0">
+                        <div class="col-3 p-1"><button class="btn btn-dark-orange w-100" onclick="clearAll()">AC</button>
+                        </div>
+                        <div class="col-3 p-1"><button class="btn btn-dark-orange w-100" onclick="clearEntry()">C</button>
+                        </div>
+                        <div class="col-3 p-1"><button id="backspace-btn" class="btn btn-dark-orange w-100" onclick="backspace()">←</button>
+                        </div>
+                        <div class="col-3 p-1"><button class="btn btn-primary w-100" onclick="addTime()">+</button>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-3 p-1"><button class="btn btn-secondary w-100"
+                                onclick="appendNumber('7')">7</button></div>
+                        <div class="col-3 p-1"><button class="btn btn-secondary w-100"
+                                onclick="appendNumber('8')">8</button></div>
+                        <div class="col-3 p-1"><button class="btn btn-secondary w-100"
+                                onclick="appendNumber('9')">9</button></div>
+                        <div class="col-3 p-1"><button class="btn btn-primary w-100"
+                                onclick="operateTime('-')">-</button></div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-3 p-1"><button class="btn btn-secondary w-100"
+                                onclick="appendNumber('4')">4</button></div>
+                        <div class="col-3 p-1"><button class="btn btn-secondary w-100"
+                                onclick="appendNumber('5')">5</button></div>
+                        <div class="col-3 p-1"><button class="btn btn-secondary w-100"
+                                onclick="appendNumber('6')">6</button></div>
+                        <div class="col-3 p-1"><button id="minute-mode-btn" class="btn btn-warning w-100"
+                                onclick="setMode('m')">min</button></div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-9">
+                            <div class="row g-0">
+                                <div class="col-4 p-1"><button class="btn btn-secondary w-100"
+                                        onclick="appendNumber('1')">1</button></div>
+                                <div class="col-4 p-1"><button class="btn btn-secondary w-100"
+                                        onclick="appendNumber('2')">2</button></div>
+                                <div class="col-4 p-1"><button class="btn btn-secondary w-100"
+                                        onclick="appendNumber('3')">3</button></div>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col-8 p-1"><button class="btn btn-secondary w-100"
+                                        onclick="appendNumber('0')">0</button></div>
+                                <div class="col-4 p-1"><button id="decimal-btn" class="btn btn-secondary w-100"
+                                        onclick="appendNumber('.')">.</button></div>
+                            </div>
+                        </div>
+                        <div class="col-3 p-1 d-grid">
+                            <button class="btn btn-primary" style="height: 128px;" onclick="calculateTotal()">=</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- MODE D'EMPLOI -->
+    <section id="user-guide-section" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12" style="max-width: 400px; margin: auto; background-color: #212529; padding: 1.5rem; border-radius: 20px;">
+                    <h3 class="text-center mb-3">Mode d'emploi</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-transparent text-white-50"><strong>Pour saisir en heures et
+                                minutes :</strong> entrez les heures, appuyez sur <strong
+                                class="text-warning">min</strong>, entrez les minutes, puis appuyez sur <strong
+                                class="text-primary">+</strong> (ou <strong class="text-primary">-</strong> pour
+                            soustraire).</li>
+                        <li class="list-group-item bg-transparent text-white-50"><strong>Pour saisir en heures et
+                                centièmes :</strong> entrez la valeur décimale (ex: 1.5), puis appuyez sur <strong
+                                class="text-primary">+</strong> (ou <strong class="text-primary">-</strong>).</li>
+                        <li class="list-group-item bg-transparent text-white-50">Répétez l'opération pour chaque
+                            temps à additionner.</li>
+                        <li class="list-group-item bg-transparent text-white-50">Appuyez sur <strong
+                                class="text-primary">=</strong> pour obtenir le total en heures et minutes.</li>
+                    </ul>
+                    <p class="mt-4 text-white-50">
+                        <strong>Autres boutons :</strong><br>
+                        <strong class="text-warning">C</strong> : Efface la saisie en cours.<br>
+                        <strong class="text-warning">AC</strong> : Réinitialise toute la calculatrice (saisie, liste
+                        et total).<br>
+                        <strong class="text-success">Convertir</strong> : Change le format du total entre minutes
+                        et centièmes.<br>
+                        <strong class="text-warning">←</strong> : Efface le dernier chiffre saisi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentH = 0;
+        let currentM = 0;
+        let timeList = []; // in minutes
+        let currentInputMode = 'h'; // 'h', 'm', or 'decimal'
+        let inputBuffer = '';
+        let totalInMinutes = 0;
+        let totalDisplayMode = 'minutes'; // 'minutes' or 'hundredths'
+
+        function formatTime(totalMinutes, mode) {
+            const sign = totalMinutes < 0 ? '-' : '';
+            const absMinutes = Math.abs(totalMinutes);
+
+            if (mode === 'hundredths') {
+                const hours = absMinutes / 60;
+                const h = Math.floor(hours);
+                const c = Math.round((hours - h) * 100);
+                return `${sign}${h},${c.toString().padStart(2, '0')}<small>h</small>`;
+            } else { // minutes
+                const h = Math.floor(absMinutes / 60);
+                const m = Math.round(absMinutes % 60);
+                return `${sign}${h}<small>h</small> ${m.toString().padStart(2, '0')}<small>mn</small>`;
+            }
+        }
+
+        function updateDisplay() {
+            const display = document.getElementById('current-input');
+            if (currentInputMode === 'decimal') {
+                display.innerHTML = inputBuffer ? `${inputBuffer}<small>h</small>` : '0,00<small>h</small>';
+            } else {
+                display.innerHTML = `${currentH}<small>h</small> ${currentM.toString().padStart(2, '0')}<small>mn</small>`;
+            }
+
+            const timeListDiv = document.getElementById('time-list');
+            timeListDiv.innerHTML = timeList.map((totalMinutes, index) => {
+                const sign = totalMinutes < 0 ? '-' : (index > 0 ? '+' : '');
+                return `<div>${sign} ${formatTime(Math.abs(totalMinutes), 'minutes')}</div>`;
+            }).join('');
+            timeListDiv.scrollTop = timeListDiv.scrollHeight;
+        }
+
+        function appendNumber(num) {
+            if (num === '.' && inputBuffer.includes('.')) return;
+
+            if (num === '.') {
+                // If starting a decimal input, reset other modes
+                if (currentInputMode !== 'decimal') { // Switching from h/m mode to decimal
+                    setMode('decimal');
+                    inputBuffer = (currentH > 0 ? currentH.toString() : '0') + '.';
+                    currentH = 0; currentM = 0;
+                } else {
+                    inputBuffer += num;
+                }
+            } else { // It's a number
+                if (currentInputMode !== 'decimal') {
+                    inputBuffer += num;
+                    if (currentInputMode === 'h') {
+                        currentH = parseInt(inputBuffer) || 0;
+                    } else if (currentInputMode === 'm') {
+                        if (parseInt(inputBuffer) < 60) {
+                            currentM = parseInt(inputBuffer) || 0;
+                        } else {
+                            inputBuffer = inputBuffer.slice(0, -1); // remove last digit
+                        }
+                    }
+                } else {
+                    inputBuffer += num;
+                }
+            }
+            updateDisplay();
+        }
+
+        function setMode(mode) {
+            currentInputMode = mode;
+            if (mode !== 'decimal') {
+                inputBuffer = '';
+            }
+        }
+
+        function backspace() {
+            if (currentInputMode === 'decimal') {
+                if (inputBuffer.length > 0) inputBuffer = inputBuffer.slice(0, -1);
+            } else {
+                if (inputBuffer.length > 0) {
+                    inputBuffer = inputBuffer.slice(0, -1);
+                    if (currentInputMode === 'h') currentH = parseInt(inputBuffer) || 0;
+                    if (currentInputMode === 'm') currentM = parseInt(inputBuffer) || 0;
+                }
+            }
+            updateDisplay();
+        }
+
+        function operateTime(operator) {
+            let totalMinutes = 0;
+            if (currentInputMode === 'decimal') {
+                const decimalHours = parseFloat(inputBuffer) || 0;
+                totalMinutes = decimalHours * 60;
+            } else {
+                totalMinutes = currentH * 60 + currentM;
+            }
+
+            if (operator === '-') {
+                totalMinutes *= -1;
+            }
+
+            if (totalMinutes !== 0) {
+                timeList.push(totalMinutes);
+                clearEntry();
+            }
+        }
+
+        function addTime() { operateTime('+'); }
+
+        function clearEntry() {
+            currentH = 0;
+            currentM = 0;
+            inputBuffer = '';
+            currentInputMode = 'h';
+            updateDisplay();
+        }
+
+        function clearAll() {
+            clearEntry();
+            timeList = [];
+            totalInMinutes = 0;
+            totalDisplayMode = 'minutes';
+            document.getElementById('result').innerHTML = formatTime(0, totalDisplayMode);
+            document.getElementById('convert-btn').textContent = 'Convertir en cent.';
+            updateDisplay();
+        }
+
+        function calculateTotal() {
+            addTime(); // Add the last entry before calculating
+            totalInMinutes = timeList.reduce((acc, time) => acc + time, 0);
+            totalDisplayMode = 'minutes';
+            document.getElementById('result').innerHTML = formatTime(totalInMinutes, totalDisplayMode);
+            document.getElementById('convert-btn').textContent = 'Convertir en cent.';
+        }
+
+        function convertTotal() {
+            if (totalInMinutes === 0) return;
+            totalDisplayMode = (totalDisplayMode === 'minutes') ? 'hundredths' : 'minutes';
+            document.getElementById('result').innerHTML = formatTime(totalInMinutes, totalDisplayMode);
+            const convertBtn = document.getElementById('convert-btn');
+            convertBtn.textContent = (totalDisplayMode === 'minutes') ? 'Convertir en cent.' : 'Convertir en min.';
+        }
+
+        // Initial display update
+        updateDisplay();
+    </script>
+
+</body>
+
+</html>

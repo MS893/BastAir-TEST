@@ -1,0 +1,68 @@
+<% content_for :title, "Baptêmes de l'air" %>
+
+<div class="container my-5">
+  <div class="text-center">
+    <h1 class="mb-4">Baptêmes de l'air</h1>
+    <p class="lead">
+      Offrez-vous ou offrez à vos proches une expérience inoubliable dans le ciel de la Guadeloupe.
+    </p>
+  </div>
+  <hr class="my-5">
+
+  <h2 class="text-center mb-4">Nos circuits de découverte</h2>
+  <div class="row">
+    <!-- Circuit 1: Volcan -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <%= image_tag 'https://placehold.co/600x400/dc3545/FFFFFF?text=Volcan', class: 'card-img-top', alt: 'Survol du volcan' %>
+        <div class="card-body">
+          <h5 class="card-title">Survol du volcan</h5>
+          <p class="card-text">Admirez la majestueuse Soufrière depuis le ciel. Une vue à couper le souffle sur le sommet de la Guadeloupe.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Circuit 2: Les Saintes -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <%= image_tag 'https://placehold.co/600x400/0d6efd/FFFFFF?text=Les+Saintes', class: 'card-img-top', alt: 'Survol des Saintes' %>
+        <div class="card-body">
+          <h5 class="card-title">Survol des Saintes</h5>
+          <p class="card-text">Découvrez l'une des plus belles baies du monde vue d'en haut. Un panorama exceptionnel sur l'archipel des Saintes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Circuit 3: Côte de Basse-Terre -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <%= image_tag 'https://placehold.co/600x400/198754/FFFFFF?text=Côte', class: 'card-img-top', alt: 'Survol de la côte' %>
+        <div class="card-body">
+          <h5 class="card-title">Survol de la côte de Basse-Terre</h5>
+          <p class="card-text">Longez le littoral de la Côte-sous-le-vent, entre mer des Caraïbes et montagnes verdoyantes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <!-- Card : Tarifs Baptêmes -->
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100 text-center">
+      <div class="card-header">
+        <h4 class="my-0 fw-normal">Baptêmes de l'air</h4>
+      </div>
+      <div class="card-body d-flex flex-column">
+        <h1 class="card-title pricing-card-title">150€</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Vol découverte de 30 minutes</li>
+          <li>Survol de la côte à Basse-Terre</li>
+          <li>Cadeau inoubliable</li>
+        </ul>
+        <%= link_to "Offrir un baptême", '#', class: "w-100 btn btn-lg btn-outline-primary mt-auto" %>
+      </div>
+    </div>
+  </div>
+
+</div>

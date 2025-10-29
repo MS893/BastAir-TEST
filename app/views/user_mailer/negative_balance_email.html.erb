@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour <%= @user.prenom %>,</h1>
+    <p>
+      Nous vous informons que le solde de votre compte BastAir est actuellement négatif : <strong><%= number_to_currency(@user.solde, unit: "€") %></strong>.
+    </p>
+    <p>Pour continuer à voler, nous vous invitons à créditer votre compte dès que possible.</p>
+    <p>Pour vous connecter et recharger votre compte, veuillez suivre ce lien : <%= link_to "Créditer mon compte", @url %>.</p>
+    <p>À très bientôt sur BastAir !</p>
+  </body>
+</html>
