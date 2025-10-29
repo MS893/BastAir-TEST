@@ -3,7 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 import "@popperjs/core";
-import "bootstrap"; 
+import "bootstrap";
 
 document.addEventListener("turbo:load", function () {
   var tooltipTriggerList = [].slice.call(

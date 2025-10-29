@@ -116,3 +116,12 @@ h6 {
 .profile-details p:last-child {
   border-bottom: none;
 }
+
+/*
+ * =============================================================================
+ * STYLES DE LA PAGE TARIFS
+ * =============================================================================
+ */
+.price {
+  font-weight: 700; /* Met le texte en gras (700 est l'équivalent de 'bold') */
+}

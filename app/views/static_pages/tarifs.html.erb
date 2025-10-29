@@ -23,23 +23,23 @@
           <div class="card-body d-flex flex-column">
             <p><strong>Cotisation annuelle à l'aéroclub</strong></p>
             <ul class="list-unstyled mb-4">
-              <li>Moins de 21 ans : <%= @tarif.cotisation_club_m21 %>€</li>
-              <li>Plus de 21 ans : <%= @tarif.cotisation_club_p21 %>€</li>
-              <li>Pilote inscrit dans un autre club FFA : <%= @tarif.cotisation_autre_ffa %>€</li>
+              <li>Moins de 21 ans : <span class="price"><%= @tarif.cotisation_club_m21 %>€</span></li>
+              <li>Plus de 21 ans : <span class="price"><%= @tarif.cotisation_club_p21 %>€</span></li>            
+              <li>Pilote inscrit dans un autre club FFA : <span class="price"><%= @tarif.cotisation_autre_ffa %>€</span></li>
             </ul>
             <p><strong>Licence FFA</strong></p>
             <ul class="list-unstyled mb-4">
-              <li>Avec abonnement Info Pilote : <%= @tarif.licence_ffa_info_pilote %>€</li>
-              <li>Sans abonnement Info Pilote : <%= @tarif.licence_ffa %>€</li>
+              <li>Avec abonnement Info Pilote : <span class="price"><%= @tarif.licence_ffa_info_pilote %>€</span></li>
+              <li>Sans abonnement Info Pilote : <span class="price"><%= @tarif.licence_ffa %>€</span></li>
             </ul>
             <p><strong>E-learning du cours théorique avec Mermoz</strong></p>
             <ul class="list-unstyled mb-4">
-              <li>(50% du tarif normal) : <%= @tarif.elearning_theorique %>€</li>
+              <li>(50% du tarif normal) : <span class="price"><%= @tarif.elearning_theorique %>€</span></li>              
             </ul>
             <p><strong>Manuel du Pilote Privé</strong></p>
             <ul class="list-unstyled mb-1">
-              <li>Moins de 21 ans : <%= @tarif.pack_pilote_m21 == 0 ? 'offert' : "#{@tarif.pack_pilote_m21}€" %></li>
-              <li>Plus de 21 ans : <%= @tarif.pack_pilote_p21 %>€</li>
+              <li>Moins de 21 ans : <span class="price"><%= @tarif.pack_pilote_m21 == 0 ? 'offert' : "#{@tarif.pack_pilote_m21}€" %></span></li>
+              <li>Plus de 21 ans : <span class="price"><%= @tarif.pack_pilote_p21 %>€</span></li>
             </ul>
           </div>
         </div>
@@ -54,12 +54,13 @@
           <div class="card-body d-flex flex-column">
             <h1 class="card-title pricing-card-title my-5"><%= @tarif.tarif_horaire_avion1 %>€<small class="text-muted fw-light">/h</small></h1>
             <p>(tarif évolutif en fonction du coût de l'essence)</p>
-            <p>Tarif instruction : 10€/h (<%= @tarif.tarif_horaire_avion1 + 10 %>€/h en tout)</p>
+<!-- ***************************************** PRIX INSTRUCTION DANS TABLE TARIFS **********************************************************  -->
+            <p>Tarif instruction : <span class="price">10€</span>/h (<span class="price"><%= @tarif.tarif_horaire_avion1 + 10 %>€</span>/h en tout)</p>
             <br>
             <p><strong>Réduction en cas d'achat d'un bloc d'heures :</strong></p>
             <ul class="list-unstyled mb-4">
-              <li>-5€/h pour un bloc de 6h</li>
-              <li>-10€/h pour un bloc de 10h</li>
+              <li><span class="price">-5€</span>/h pour un bloc de 5h</li>
+              <li><span class="price">-10€</span>/h pour un bloc de 10h</li>
             </ul>
           </div>
         </div>
