@@ -88,7 +88,7 @@ group :development, :test do
   gem 'letter_opener'
 
   # Rspec pour les tests
-  gem "rspec-rails", "~> 6.1"
+  gem "rspec-rails", "~> 8.0"
 
 end
 
