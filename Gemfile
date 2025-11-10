@@ -24,7 +24,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 # gestion des tâches automatiques
 gem 'whenever', require: false
 # APIs Google
-gem 'google-apis-calendar_v3', '~> 0.5.0'
+gem 'google-apis-calendar_v3', '~> 0.48.0'
 gem 'google-apis-drive_v3', '~> 0.5.0'
 # graphiques pour la compta
 gem 'chartkick'
